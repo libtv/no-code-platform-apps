@@ -10,6 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "ajv": "6.8.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
@@ -53,6 +54,9 @@
   "engines": {
     "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
+  },
+  "resolutions": {
+    "ajv": "6.5.5"
   },
   "browserslist": [
     "> 1%",
