@@ -7,6 +7,7 @@
     <div>
       <h4>자유게시판</h4>
       <p v-for="j, i in contents" :key="j">{{ title[i] }} {{ j }}</p>
+      <a href="write"><button>글쓰기</button></a>
       <button v-on:click="recommendNum[0]++">추천</button>
       <span>추천수 {{ recommendNum[0] }}</span>
   </div>
