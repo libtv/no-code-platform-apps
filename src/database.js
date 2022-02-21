@@ -1,9 +1,14 @@
 import oracledb from "oracledb";
+import dotenv from 'dotenv';
+
+dotenv.config({
+    path : "../.env"
+});
 
 oracledb.getConnection({
-    user          : "jihee",
-    password      : "64605548",
-    connectString : "localhost/XE"
+    user          : process.env.ORACLE_USER,
+    password      : process.env.ORACLE_PASSWORD,
+    connectString : process.env.ORACLE_HOST + "/" + process.env.ORACLE_DATABASE
 }, function (err, conn) {
     if(err){
         console.log('접속 실패', err);

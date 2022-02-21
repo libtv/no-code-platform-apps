@@ -1,12 +1,14 @@
 import express from "express";
 import homeRouter from "./routes/home.js";
+import dotenv from 'dotenv'
+
+dotenv.config();
 
 const app = express();
 
-const port = 8081;
 app.use(express.static('public'));
-app.listen(port, function(){
-    console.log(`Start Sever on ${port}!`)
+app.listen(process.env.PORT, function(){
+    console.log(`Start Sever on ${process.env.PORT}!`)
 });
 
 app.use("/", homeRouter);
