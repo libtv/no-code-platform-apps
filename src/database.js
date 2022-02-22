@@ -5,7 +5,7 @@ dotenv.config({
     path : "../.env"
 });
 
-oracledb.getConnection({
+export default oracledb.getConnection({
     user          : process.env.ORACLE_USER,
     password      : process.env.ORACLE_PASSWORD,
     connectString : process.env.ORACLE_HOST + "/" + process.env.ORACLE_DATABASE

@@ -1,22 +1,34 @@
 <template>
     <div>
-        <form action="/add" method="POST">
-            <input type="text" class="title" name="title" value="">
-            <input type="content" class="content" name="content">
+        <form v-on:submit="submitForm" action="/upload" method="POST">
+            <div>
+                <label for="title">제목</label>
+                <input type="text" id="title" name="title" value="" v-model="title">
+            </div>
+            <div>
+                <label for="content">내용</label>
+                <textarea type="content" id="content" name="content" v-model="content"></textarea>
+            </div>
+            <button type="submit">글 올리기</button>
         </form>
-        <button type="submit" @click="upload">글 올리기</button>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: 'write',
-    title: '',
-    content: '',
+    data() {
+        return {
+            title: '',
+            content: '',
+        }
+    },
     methods: {
-        upload: function() {
+        submitForm: function() {
             console.log(this.title, this.content);
-            axios.get(url)
+            axios.post('http://localhost:8081/upload')
                 .then(function(response) {
                     console.log(response);
                 })

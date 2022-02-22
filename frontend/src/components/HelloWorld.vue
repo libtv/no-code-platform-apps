@@ -1,85 +1,17 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+    <div class="menu">
+      <a>Community</a>
+      <a v-for="i in menus" :key="i">{{ i }}</a>
+    </div>
+    <div>
+      <h4>자유게시판</h4>
+      <p v-for="j, i in contents" :key="j">{{ title[i] }} {{ j }}</p>
+      <router-link to="/write"><button>글쓰기</button></router-link>
+      <button v-on:click="recommendNum[0]++">추천</button>
+      <span>추천수 {{ recommendNum[0] }}</span>
+      
+    </div>
   </div>
 </template>
 
@@ -88,7 +20,11 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      menus : ['공지사항', 'Best', 'About'],
+      title : ['제목1', '제목2', '제목3'],
+      contents : ['내용1', '내용2', '내용3'],
+      recommendNum : [0, 0, 0],
     }
   }
 }
@@ -109,5 +45,15 @@ li {
 }
 a {
   color: #42b983;
+}
+.menu {
+  background: #2c3e50;
+  padding: 20px;
+  border-radius: 5px;
+}
+.menu a {
+  color: white;
+  padding: 20px;
+  text-decoration: none;
 }
 </style>
