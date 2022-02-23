@@ -10,7 +10,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/upload', function(req, res, next) {
-    console.log(req, res)
+    console.log(req.body)
+    return res.json({success : true})
 })
 
 export default router;

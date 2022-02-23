@@ -33,11 +33,11 @@ export default {
     name: 'write',
     data() {
         return {
-            title: 'free',
+            title: '',
             content: '',
             writer: 'anony',
             image: '',
-            time: ''
+            time: new Date().toString()
         }
     },
     methods: {
@@ -53,9 +53,10 @@ export default {
 			this.form = { //backend로 전송될 POST 데이터
 				title:this.title,
 			    content:this.content,
-				writer:this.writer
+				writer:this.writer,
+                time:this.time
 			} 
-			this.$axios.post('http://localhost:8081/upload',this.form)
+			this.$axios.post('http://localhost:8080/upload',this.form)
 			.then((res)=>{
 				if(res.data.success) {
 					alert('등록되었습니다.');
@@ -76,9 +77,13 @@ export default {
 </script>
 
 <style>
+.addForm {
+
+}
 table{
     width:60%;
     border-collapse:collapse;
+    margin: 0 auto;
 }
 .wrap{
     width:100%;
