@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import Write from '@/views/Write'
+import Write from '@/views/write'
 
 Vue.use(Router)
 
@@ -16,13 +16,13 @@ export default new Router({
       path: '/write',
       name: 'write',
       component: Write,
-      children: [
-        // {
-        //   name: 'upload',
-        //   path: '/upload',
-        //   component: () => import('@/views/Upload'),
-        // }
-      ]
+      // children: [
+      //   {
+      //     name: 'upload',
+      //     path: '/write/upload',
+      //     component: () => import('@/views/Upload'),
+      //   }
+      // ]
     },
     {
       name: 'upload',

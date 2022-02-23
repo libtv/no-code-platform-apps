@@ -1,31 +1,43 @@
 <template>
   <div class="hello">
-    <div class="menu">
-      <a>Community</a>
-      <a v-for="i in menus" :key="i">{{ i }}</a>
-    </div>
+    <Header/>
     <div>
-      <h4>자유게시판</h4>
+      <h4 class="free">자유게시판</h4>
+      <router-link to="/write"><button class="writeGo">글쓰기</button></router-link>
       <p v-for="j, i in contents" :key="j">{{ title[i] }} {{ j }}</p>
-      <router-link to="/write"><button>글쓰기</button></router-link>
+      <a href="javascript:;" @click="getList">GET 방식 데이터 접근</a>
       <button v-on:click="recommendNum[0]++">추천</button>
-      <span>추천수 {{ recommendNum[0] }}</span>
-      
+      <span>추천수 {{ recommendNum[0] }}</span>      
     </div>
   </div>
 </template>
 
 <script>
+import Header from '@/components/Header';
+
 export default {
   name: 'HelloWorld',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      menus : ['공지사항', 'Best', 'About'],
       title : ['제목1', '제목2', '제목3'],
       contents : ['내용1', '내용2', '내용3'],
       recommendNum : [0, 0, 0],
     }
+  },
+  methods: {
+    getList() {
+			this.$axios.get("http://localhost:8081/api")
+			.then((res)=>{
+				console.log(res);
+			})
+			.then((err)=>{
+				console.log(err);
+			})
+		}
+  },
+  components: {
+    Header
   }
 }
 </script>
@@ -45,15 +57,5 @@ li {
 }
 a {
   color: #42b983;
-}
-.menu {
-  background: #2c3e50;
-  padding: 20px;
-  border-radius: 5px;
-}
-.menu a {
-  color: white;
-  padding: 20px;
-  text-decoration: none;
 }
 </style>
