@@ -37,7 +37,7 @@ export default {
             content: '',
             writer: 'anony',
             image: '',
-            time: new Date().toString()
+            time: ''
         }
     },
     methods: {
@@ -53,10 +53,9 @@ export default {
 			this.form = { //backend로 전송될 POST 데이터
 				title:this.title,
 			    content:this.content,
-				writer:this.writer,
-                time:this.time
+				writer:this.writer
 			} 
-			this.$axios.post('http://localhost:8080/upload',this.form)
+			this.$axios.post('http://localhost:8081/upload',this.form)
 			.then((res)=>{
 				if(res.data.success) {
 					alert('등록되었습니다.');
@@ -77,9 +76,6 @@ export default {
 </script>
 
 <style>
-.addForm {
-
-}
 table{
     width:60%;
     border-collapse:collapse;

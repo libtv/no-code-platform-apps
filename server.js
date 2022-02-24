@@ -1,5 +1,5 @@
 import express from 'express';
-import homeRouter from "./routes/home.js";
+import homeRouter from "./src/routes/home.js";
 import dotenv from 'dotenv'
 import { expressLimit } from 'express-access-limit';
 import cors from 'cors';
@@ -23,8 +23,8 @@ app.use(limiter.checkLimitHandler);
 app.use(express.static('public'));
 app.use(cors());
 app.use(express.json());
-app.listen(8080, function(){
-    console.log(`Start Sever on !`)
+app.listen(process.env.PORT, function(){
+    console.log(`Start Sever on ${process.env.PORT}!`)
 });
 
 app.use("/", homeRouter);
