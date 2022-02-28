@@ -3,9 +3,25 @@ import db from '../database.js';
 const myQuery = await db();
 
 let list = (req, res) => {
-    myQuery("SELECT * FROM posts", (err, row) => {
+    let ipp = 10;
+	let totalCount = 0;
+	let block = 10;
+	let total_page = 0;
+	let page = 1;
+	let start = 0;
+	let end = ipp;
+	let start_page = 1;
+	let end_page = block;
+	let where = '';
+
+    let sql = "SELECT count(*) cnt FROM posts"
+    myQuery.execute("SELECT * FROM posts", (err, list) => {
         if(err) throw err;
-        res.send({success:true, data:row})
+        totalCount = data[0].cnt;
+
+        total_page = Math.ceil(totalCount/ipp);
+
+        res.send({success:true, list:list})
     })
 }
 

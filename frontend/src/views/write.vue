@@ -1,6 +1,5 @@
 <template>
     <div>
-        <Header/>
         <div class="addForm">
         <form v-on:submit="submitForm" action="/upload" method="POST">
             <table class="tbAdd">
@@ -27,8 +26,6 @@
 </template>
 
 <script>
-import Header from '@/components/Header';
-
 export default {
     name: 'write',
     data() {
@@ -70,7 +67,7 @@ export default {
 		}
     },
     components: {
-        Header
+
     }
 }
 </script>

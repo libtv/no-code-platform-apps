@@ -10,6 +10,8 @@ router.get('/', function(req, res, next) {
     res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-router.post('/upload', dao.add)
+router.get('/list', dao.list);
+
+router.post('/upload', dao.add);
 
 export default router;

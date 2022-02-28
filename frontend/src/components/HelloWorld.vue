@@ -1,43 +1,58 @@
 <template>
   <div class="hello">
-    <Header/>
     <div>
       <h4 class="free">자유게시판</h4>
       <router-link to="/write"><button class="writeGo">글쓰기</button></router-link>
-      <p v-for="j, i in contents" :key="j">{{ title[i] }} {{ j }}</p>
-      <a href="javascript:;" @click="getList">GET 방식 데이터 접근</a>
-      <button v-on:click="recommendNum[0]++">추천</button>
-      <span>추천수 {{ recommendNum[0] }}</span>      
+      <tr>
+        <th>no</th>
+        <th>제목</th>
+        <th>아이디</th>
+        <th>날짜</th>
+      </tr>
+      <tr v-for="(row, idx) in list" :key="idx">
+        <td>{{ no-idx }}</td>
+        <td><a href="#">{{ row.title }}</a></td>
+        <td>{{ row.writer }}</td>
+        <td>{{ row.time }}</td>
+      </tr>
+      <p v-if="list.length == 0">글이 없습니다.</p>
     </div>
   </div>
 </template>
 
 <script>
-import Header from '@/components/Header';
-
 export default {
   name: 'HelloWorld',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      title : ['제목1', '제목2', '제목3'],
-      contents : ['내용1', '내용2', '내용3'],
-      recommendNum : [0, 0, 0],
+      list : '',
     }
+  },
+  mounted() {
+    this.getList();
   },
   methods: {
     getList() {
-			this.$axios.get("http://localhost:8081/api")
+			this.body = {
+
+      }
+      this.$axios.get("http://localhost:8081/list")
 			.then((res)=>{
 				console.log(res);
+        if(res.data.success) {
+          this.list = res.data.list;
+        } else {
+          alert("실패했습니다.")
+        }
 			})
-			.then((err)=>{
+			.catch((err)=>{
 				console.log(err);
 			})
 		}
   },
   components: {
-    Header
+
   }
 }
 </script>
