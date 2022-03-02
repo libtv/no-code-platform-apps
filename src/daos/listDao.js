@@ -1,3 +1,4 @@
+import logger from '../logger.js';
 import db from '../database.js';
 
 const myQuery = await db();
@@ -17,21 +18,35 @@ let list = (req, res) => {
     let sql = "SELECT count(*) cnt FROM posts"
     myQuery.execute("SELECT * FROM posts", (err, list) => {
         if(err) throw err;
-        totalCount = data[0].cnt;
+        // totalCount = data[0].cnt;
 
-        total_page = Math.ceil(totalCount/ipp);
+        // total_page = Math.ceil(totalCount/ipp);
 
         res.send({success:true, list:list})
     })
 }
 
+let view = (req, res) => {
+    let body = req.query;
+    let num = req.params.num;
+    sql = "SELECT * FROM posts WHERE num = ?";
+    myQuery.execute(sql, [num], (err, view) => {
+        if(err) throw err;
+        logger.error(err)
+
+        res.send({success:true, view:view})
+    })
+}
+
+let no = -1;
 let add = (req, res) => {
     let body = req.body;
-    let sql = "INSERT INTO posts (TITLE, CONTENT, WRITER, TIME) VALUES (:1, :2, :3, sysdate)";
+    let sql = "INSERT INTO posts (TITLE, CONTENT, WRITER, NUM, TIME) VALUES (:1, :2, :3, :4, sysdate)";
     myQuery.execute(sql,
         [body.title,
         body.content,
-        body.writer],
+        body.writer,
+        no += 1],
         (err, result) => {
         if(err) throw err;
 
@@ -40,4 +55,4 @@ let add = (req, res) => {
     })
 }
 
-export default { list, add }
+export default { list, view, add }

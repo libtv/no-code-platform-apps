@@ -12,6 +12,8 @@ router.get('/', function(req, res, next) {
 
 router.get('/list', dao.list);
 
+router.get('/:num', dao.view);
+
 router.post('/upload', dao.add);
 
 export default router;

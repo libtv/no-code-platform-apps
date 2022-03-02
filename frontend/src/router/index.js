@@ -28,6 +28,11 @@ export default new Router({
       name: 'upload',
       path: '/upload',
       component: () => import('@/views/Upload'),
+    },
+    {
+      name: 'detail',
+      path: '/detail',
+      component: () => import('@/components/Detail'),
     }
   ]
 })
