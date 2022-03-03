@@ -3,6 +3,7 @@ import homeRouter from "./src/routes/home.js";
 import dotenv from 'dotenv'
 import { expressLimit } from 'express-access-limit';
 import cors from 'cors';
+import helmet from 'helmet';
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ const limiter = expressLimit.expressLimit({
 });
 limiter.setAccessStore();
 
+app.use(helmet());
 app.use(limiter.checkLimitHandler);
 app.use(express.static('public'));
 app.use(cors());

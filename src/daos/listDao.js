@@ -15,22 +15,48 @@ let list = (req, res) => {
 	let end_page = block;
 	let where = '';
 
-    let sql = "SELECT count(*) cnt FROM posts"
-    myQuery.execute("SELECT * FROM posts", (err, list) => {
+    let body = req.query;
+
+    let sql = "SELECT count(*) cnt FROM posts";
+    myQuery.execute(sql, (err, data) => {
         if(err) throw err;
-        // totalCount = data[0].cnt;
+        // console.log(data.rows.length);
+        totalCount = data.rows;
+        
 
-        // total_page = Math.ceil(totalCount/ipp);
+        total_page = Math.ceil(totalCount/ipp);
 
-        res.send({success:true, list:list})
+        if(body.page) page = body.page;
+		start = (page - 1) * 10;
+		start_page = Math.ceil(page / block);
+		end_page = start_page * block;
+
+        if(total_page < end_page) end_page = total_page;
+
+		let paging = {
+			"totalCount": totalCount
+			,"total_page": total_page
+			,"page": page
+			,"start_page": start_page
+			,"end_page": end_page
+			,"ipp": ipp
+		}
+
+        let sql = "SELECT * FROM posts ORDER BY time DESC";
+        myQuery.execute(sql, (err, list) => {
+            if(err) throw err;
+
+            res.send({success:true, list:list, paging:paging})
+        })
     })
 }
 
 let view = (req, res) => {
     let body = req.query;
-    let num = req.params.num;
-    sql = "SELECT * FROM posts WHERE num = ?";
-    myQuery.execute(sql, [num], (err, view) => {
+    num = req.params.num;
+    console.log(req.params.num)
+    sql = "SELECT * FROM posts WHERE id = ?";
+    myQuery.execute(sql, [body.num], (err, view) => {
         if(err) throw err;
         logger.error(err)
 
@@ -38,15 +64,13 @@ let view = (req, res) => {
     })
 }
 
-let no = -1;
 let add = (req, res) => {
     let body = req.body;
-    let sql = "INSERT INTO posts (TITLE, CONTENT, WRITER, NUM, TIME) VALUES (:1, :2, :3, :4, sysdate)";
+    let sql = "INSERT INTO posts (TITLE, CONTENT, WRITER, TIME) VALUES (:1, :2, :3, sysdate)";
     myQuery.execute(sql,
         [body.title,
         body.content,
-        body.writer,
-        no += 1],
+        body.writer],
         (err, result) => {
         if(err) throw err;
 

@@ -23,6 +23,7 @@ export default {
             this.$axios.get('http://localhost:8081/list' + this.body.num, {params: this.body})
             .then((res)=>{
 				this.view = res.data.view[0];
+                console.log(res.data.view[0]);
 				this.subject = this.view.subject;
 				this.cont = this.view.cont.replace(/(\n)/g,'<br/>');
 			})

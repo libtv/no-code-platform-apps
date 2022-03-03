@@ -11,8 +11,8 @@
           <th>날짜</th>
         </tr>
         <tr v-for="(row, idx) in list" :key="idx">
-          <td>{{ row[5] + 1 }}</td>
-          <td class="title_txt"><a href="#" @click="getView(`${row.num}`)">{{ row[0] }}</a></td>
+          <td>{{ row[5] }}</td>
+          <td class="title_txt"><a href="#" @click="getView(`${row[5]}`)">{{ row[0] }}</a></td>
           <td>{{ row[2] }}</td>
           <td>{{ row[4].substring(0, 10) }}</td>
         </tr>
