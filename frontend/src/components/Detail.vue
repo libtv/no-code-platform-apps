@@ -20,7 +20,7 @@ export default {
     },
     methods: {
         getView() {
-            this.$axios.get('http://localhost:8081/list' + this.body.num, {params: this.body})
+            this.$axios.get('http://localhost:8081/' + this.body.num, {params: this.body})
             .then((res)=>{
 				this.view = res.data.view[0];
                 console.log(res.data.view[0]);

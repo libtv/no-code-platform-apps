@@ -20,9 +20,7 @@ let list = (req, res) => {
     let sql = "SELECT count(*) cnt FROM posts";
     myQuery.execute(sql, (err, data) => {
         if(err) throw err;
-        // console.log(data.rows.length);
-        totalCount = data.rows;
-        
+        totalCount = data.rows[0][0];
 
         total_page = Math.ceil(totalCount/ipp);
 
@@ -53,10 +51,10 @@ let list = (req, res) => {
 
 let view = (req, res) => {
     let body = req.query;
-    num = req.params.num;
+    let num = req.params.num;
     console.log(req.params.num)
-    sql = "SELECT * FROM posts WHERE id = ?";
-    myQuery.execute(sql, [body.num], (err, view) => {
+    let sql = "SELECT * FROM posts WHERE id = :1";
+    myQuery.execute(sql, [num], (err, view) => {
         if(err) throw err;
         logger.error(err)
 
