@@ -56,7 +56,6 @@ let view = (req, res) => {
     let sql = "SELECT * FROM posts WHERE id = :1";
     myQuery.execute(sql, [num], (err, view) => {
         if(err) throw err;
-        logger.error(err)
 
         res.send({success:true, view:view})
     })
