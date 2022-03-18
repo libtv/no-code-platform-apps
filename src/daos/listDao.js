@@ -1,7 +1,8 @@
 import logger from '../logger.js';
 import db from '../database.js';
 
-const myQuery = await db();
+// const myQuery = await db();
+const postgres = await db();
 
 let list = (req, res) => {
     let ipp = 10;
@@ -76,4 +77,15 @@ let add = (req, res) => {
     })
 }
 
-export default { list, view, add }
+let add2 = (req, res) => {
+    let sql = "INSERT INTO posts (TITLE, CONTENT, WRITER, TIME) VALUES ($1, $2, $3, NOW)";
+    postgres.execute(sql, [],
+        (err, result) => {
+            if(err) throw err;
+
+            postgres.commit();
+            res.send({success:true});
+        })
+}
+
+export default { list, view, add, add2 }
