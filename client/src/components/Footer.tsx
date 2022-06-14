@@ -1,6 +1,6 @@
 import React from "react";
 
-function Footer() {
+export default function Footer() {
     const style = {
         backgroundColor: '#e0e0e0',
         color: 'gray',
@@ -17,5 +17,3 @@ function Footer() {
         </div>
     )
 }
-
-export default Footer;

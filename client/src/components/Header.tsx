@@ -1,18 +1,10 @@
 import React from "react";
 
-function Header() {
-    const style = {
-        backgroundColor: '#f39c11',
-        color: 'white',
-        width: '100%',
-        fontSize: 24,
-        marginTop: 30,
-        padding: 30
-    }
+export default function Header({ isLogined } :any) {
 
     return (
-        <div className="main-header">로고 공지사항 회원가입 로그인</div>
+        <div className="main-header">
+            <div className="header-item">로고 공지사항 회원가입 { isLogined ? '로그아웃' : '로그인' }</div>
+        </div>
     )
 }
-
-export default Header;
