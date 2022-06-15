@@ -1,1 +1,6 @@
 @import url('./main.css');
+@import url('./auth.css');
+
+:root {
+    --main-color: #f39c11;
+}
