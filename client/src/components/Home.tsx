@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function Home({ list } : any) {
@@ -11,29 +11,39 @@ function Home({ list } : any) {
 
 export default function HomeList(this: any) {
     const [lists, setLists] = useState(null);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    axios.get('http://localhost:8081/list')
-    .then((Response) => {
-        setLists(null);
-        console.log(Response.data)
-        setLists(Response.data);
-    })
-    .catch((e) => {
-        setError(e)
-        console.log(e)
-    })
+    useEffect(() => {
+        const fetchUsers = async () => {
+          try {
+            setError(null);
+            setLists(null);
+            setLoading(true);
+            const response = await axios.get(
+              'http://localhost:8081/list'
+            );
+            setLists(response.data);
+          } catch (e : any) {
+            setError(e);
+          }
+          setLoading(false);
+        };
+    
+        fetchUsers();
+    }, []);
 
+    if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
-    // if (!lists) return null;
+    if (!lists) return null;
 
     console.log(lists)
 
     return (
         <div>
-            {lists.map((list: { id: number; }) => (
+            {/* {lists.map((list: { id: number; }) => (
                 <Home list={list} key={list.id} />
-            ))}
+            ))} */}
         </div>
     )
 }
