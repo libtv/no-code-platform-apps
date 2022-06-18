@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import MyTable from "./Table";
 import axios from "axios";
+import { PostListVo } from "../vo/postListVo";
 
 function Home({ list } : any) {
     return (
@@ -9,8 +11,8 @@ function Home({ list } : any) {
     )
 }
 
-export default function HomeList(this: any) {
-    const [lists, setLists] = useState(null);
+function HomeList(this: any) {
+    const [lists, setLists] = useState<PostListVo[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -18,32 +20,34 @@ export default function HomeList(this: any) {
         const fetchUsers = async () => {
           try {
             setError(null);
-            setLists(null);
             setLoading(true);
             const response = await axios.get(
               'http://localhost:8081/list'
             );
-            setLists(response.data);
+            setLists(response.data.list.rows);
           } catch (e : any) {
             setError(e);
           }
           setLoading(false);
         };
     
-        fetchUsers();
+        
+        return () => {
+          fetchUsers();
+        }
     }, []);
 
-    if (loading) return <div>로딩중..</div>;
-    if (error) return <div>에러가 발생했습니다</div>;
-    if (!lists) return null;
+    // if (loading) return <div>로딩중..</div>;
+    // if (error) return <div>에러가 발생했습니다</div>;
+    // if (!lists) return null;
 
-    console.log(lists)
+    
 
     return (
         <div>
-            {/* {lists.map((list: { id: number; }) => (
-                <Home list={list} key={list.id} />
-            ))} */}
+            <MyTable list={lists} ></MyTable>
         </div>
     )
 }
+
+export default React.memo(HomeList);

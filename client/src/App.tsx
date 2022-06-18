@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Like from './components/Like';
@@ -33,20 +34,23 @@ function App() {
   };
 
   return (
-    <>
-      <Header isLogined={ false }/>
-      <CreateUser 
-        userId={userId}
-        password={password}
-        onChange={onChange}
-        onCreate={onCreate}
-
-      />
-      <HomeList />
-      <Login />
-      <Like />
-      <Footer />
-    </>
+    <div className='App'>
+      <BrowserRouter>
+				<Header isLogined={ false }/>
+				<Routes>
+					<Route path="/" element={<HomeList />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+					<Route path="/signIn" element={<CreateUser 
+            userId={userId}
+            password={password}
+            onChange={onChange}
+            onCreate={onCreate}
+          />}></Route>
+					<Route path="*" element={<Like />}></Route>
+				</Routes>
+        <Footer />
+			</BrowserRouter>
+    </div>
   );
 }
 

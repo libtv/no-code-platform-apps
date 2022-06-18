@@ -1,5 +1,8 @@
-@import url('./main.css');
+@import url('./header.css');
+@import url('./footer.css');
 @import url('./auth.css');
+@import url('./table.css');
+@import url('../../App.css');
 
 :root {
     --main-color: #f39c11;
