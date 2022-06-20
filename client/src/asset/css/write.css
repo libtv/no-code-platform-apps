@@ -1,0 +1,20 @@
+.wirte-container input, textarea {
+    width: 50%;
+    margin-top: 30px;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px #b2b2b2;
+}
+
+.wirte-container textarea {
+    height: 400px;
+}
+
+.wirte-container button {
+    margin-top: 30px;
+    padding: 10px 80px;
+    color: white;
+    background-color: var(--main-color);
+    border-radius: 5px;
+    border: none;
+}
