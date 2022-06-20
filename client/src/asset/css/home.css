@@ -1,0 +1,19 @@
+.home-container {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.home-title {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+    color: #595959;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.home-title :last-child {
+    color: #595959;
+}

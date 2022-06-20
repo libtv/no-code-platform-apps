@@ -6,6 +6,7 @@ import Like from './components/Like';
 import Login from './components/Login';
 import HomeList from './components/Home';
 import CreateUser from './components/CreateUser';
+import Write from './components/Write';
 import './asset/css/styled.css'
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
             onChange={onChange}
             onCreate={onCreate}
           />}></Route>
+          <Route path="/write" element={<Write />}></Route>
 					<Route path="*" element={<Like />}></Route>
 				</Routes>
         <Footer />

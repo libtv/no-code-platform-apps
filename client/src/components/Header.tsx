@@ -11,6 +11,7 @@ export default function Header({ isLogined } :any) {
         <div className="main-header">
             <div className="header-item wrap">
                 <StyledLink to="/"><li>로고</li></StyledLink>
+                <div></div>
                 <StyledLink to="/"><li>공지사항</li></StyledLink>
                 <StyledLink to="/signIn"><li>회원가입</li></StyledLink>
                 {isLogined === false && <StyledLink to="/login"><li>로그인</li></StyledLink>}

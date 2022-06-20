@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import MyTable from "./Table";
 import axios from "axios";
 import { PostListVo } from "../vo/postListVo";
+import { TiPencil } from 'react-icons/ti'
 
 function Home({ list } : any) {
     return (
@@ -44,7 +46,11 @@ function HomeList(this: any) {
     
 
     return (
-        <div>
+        <div className="home-container">
+            <div className="home-title">
+              <div>게시판</div>
+              <Link to="/write"><TiPencil /></Link>
+            </div>
             <MyTable list={lists} ></MyTable>
         </div>
     )
