@@ -63,13 +63,15 @@ let view = (req, res) => {
 
 let add = (req, res) => {
     let body = req.body;
+    console.log(body);
     let sql = "INSERT INTO posts (TITLE, CONTENT, WRITER, TIME) VALUES (:1, :2, :3, sysdate)";
     myQuery.execute(sql,
         [body.title,
         body.content,
-        body.writer],
+        'anony'],
         (err, result) => {
         if(err) throw err;
+        console.log(result);
 
         myQuery.commit();
         res.send({success:true});

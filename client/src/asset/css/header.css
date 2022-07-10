@@ -24,3 +24,7 @@
     color: white;
     margin: 10px;
 }
+
+.header-item img {
+    width: 40px;
+}
