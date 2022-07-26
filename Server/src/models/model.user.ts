@@ -1,3 +1,4 @@
+import { Board } from "./model.board";
 import { dataTypes, sequelize } from "./model.index";
 
 export const Users = sequelize.define(
@@ -29,3 +30,8 @@ export const Users = sequelize.define(
         tableName: "USERS",
     }
 );
+
+Users.hasOne(Board, {
+    sourceKey: "user_id",
+    foreignKey: "user_id",
+});

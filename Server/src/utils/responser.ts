@@ -2,16 +2,21 @@ import express from "express";
 import { ApiMethodVO, Result } from "./../vo/apiVO";
 import { getResult, SUCCESS } from "./errorcode";
 
-export const CREATE_RESPONSE_OBJ = (data: any, code: string, res: express.Response): void => {
+export const sender = (data: any, code: string, res: express.Response) => {
     let params: Result = { data: data, result: getResult(code) };
-    res.locals.params = params;
-    return;
+    let otherParams = res.locals.params;
+
+    let statusCode = params.result.resultCode === SUCCESS ? 200 : 400;
+    return res.status(statusCode).json({
+        ...params,
+        ...otherParams,
+    });
 };
 
-export const RESPONSE_SEND = (req: express.Request, res: express.Response) => {
-    let result: Result = res.locals.params;
-    let statusCode = result.result.resultCode === SUCCESS ? 200 : 400;
-    return res.status(statusCode).json({
-        ...result,
-    });
+export const setLocalValue = (key: string, val: any, res: express.Response) => {
+    res.locals[key] = val;
+};
+
+export const getLocalValue = (key: string, res: express.Response) => {
+    return res.locals[key];
 };

@@ -1,8 +1,8 @@
-import { CREATE_RESPONSE_OBJ, RESPONSE_SEND } from "./responser";
+import { sender } from "./responser";
 import express from "express";
 import async from "async";
 
-interface ProcessResource {
+export interface ProcessResource {
     data: any;
     code: string;
 }
@@ -36,12 +36,10 @@ export class ProcessAPI {
         let self = this;
         async.waterfall(this.funcs, function (err, res) {
             if (err) {
-                CREATE_RESPONSE_OBJ(err.data, err.code, self.res);
-                return RESPONSE_SEND(self.req, self.res);
+                return sender(err.data, err.code, self.res);
             }
 
-            CREATE_RESPONSE_OBJ(res.data, res.code, self.res);
-            return RESPONSE_SEND(self.req, self.res);
+            return sender(res.data, res.code, self.res);
         });
     }
 }

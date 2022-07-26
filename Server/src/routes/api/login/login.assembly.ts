@@ -12,14 +12,15 @@ const api: ApiMethodVO = {
         const apiCreator = new ProcessAPI(req, res);
 
         apiCreator.add(expressValidator(post.params));
-
-        apiCreator.add((req, res, callback) => {
-            callback(null, { data: "success", code: "200" });
-        });
-
+        apiCreator.add(post.authenticate());
+        apiCreator.add(post.supplyment());
         apiCreator.run();
     },
 };
+
+// apiCreator.add((req, res, callback) => {
+//     callback(null, { data: "success", code: "200" });
+// });
 
 export default function apiRouter(prefix: string, url: string) {
     const urls = FILE_SEPARATOR + prefix + FILE_SEPARATOR + url;

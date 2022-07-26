@@ -9,23 +9,37 @@ interface MinMaxChecker {
 }
 
 export interface ValidatorParameter {
-    essential: string[] | undefined;
+    essentialHeader: string[] | undefined;
+    essentialBody: string[] | undefined;
     minmax: MinMaxChecker[] | undefined;
 }
 
-export const expressValidator = ({ essential, minmax }: ValidatorParameter) => {
+export const expressValidator = ({ essentialBody, essentialHeader, minmax }: ValidatorParameter) => {
     return function (req: express.Request, res: express.Response, callback: PrecessCallback) {
         const reqBody = req.body;
+        const reqHeader = req.headers;
 
         // 필수 파라미터 존재 여부 확인
-        if (typeof essential !== "undefined" && essential.length > 0) {
-            let result = essential.every((val) => {
-                const reqParam = reqBody[val];
+        if (typeof essentialBody !== "undefined" && essentialBody.length > 0) {
+            let result = essentialBody.every((val) => {
+                const reqParam = reqBody[val.toLowerCase()];
                 return typeof reqParam !== "undefined";
             });
 
             if (result === false) {
-                return callback({ data: null, code: NOT_EXIST_PARAMETER }, null);
+                return callback({ data: undefined, code: NOT_EXIST_PARAMETER }, null);
+            }
+        }
+
+        // 필수 파라미터 존재 여부 확인
+        if (typeof essentialHeader !== "undefined" && essentialHeader.length > 0) {
+            let result = essentialHeader.every((val) => {
+                const reqParam = reqHeader[val.toLowerCase()];
+                return typeof reqParam !== "undefined";
+            });
+
+            if (result === false) {
+                return callback({ data: undefined, code: NOT_EXIST_PARAMETER }, null);
             }
         }
 
@@ -44,7 +58,7 @@ export const expressValidator = ({ essential, minmax }: ValidatorParameter) => {
             });
 
             if (result === false) {
-                return callback({ data: null, code: NOT_ALLOW_LENGTH }, null);
+                return callback({ data: undefined, code: NOT_ALLOW_LENGTH }, null);
             }
         }
 

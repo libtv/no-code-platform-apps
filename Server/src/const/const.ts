@@ -12,3 +12,5 @@ export const DB_SET_DIALECT = process.env.DB_SET_DIALECT ? process.env.DB_SET_DI
 
 export const FILE_SEPARATOR = "/";
 export const IMPORT_API_EXTENSION = process.env.IMPORT_API_EXTENSION ? process.env.IMPORT_API_EXTENSION : "assembly.ts";
+
+export const SEJONG_API_KEY = process.env.SEJONG_API_KEY ? process.env.SEJONG_API_KEY : "sejongtelecom";
