@@ -12,6 +12,7 @@ export const method_get = {
         essentialBody: [],
         essentialHeader: [],
         minmax: undefined,
+        essentialQuery: [],
     } as ValidatorParameter,
 
     path: path.basename(__filename),

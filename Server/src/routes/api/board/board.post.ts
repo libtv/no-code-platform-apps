@@ -16,6 +16,7 @@ export const method_post = {
         essentialBody: ["board_title", "board_content"],
         essentialHeader: ["Authorization"],
         minmax: undefined,
+        essentialQuery: [],
     } as ValidatorParameter,
 
     path: path.basename(__filename),

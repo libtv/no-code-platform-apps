@@ -14,6 +14,7 @@ export const method_del = {
         essentialBody: ["board_no"],
         essentialHeader: ["Authorization"],
         minmax: undefined,
+        essentialQuery: [],
     } as ValidatorParameter,
 
     path: path.basename(__filename),

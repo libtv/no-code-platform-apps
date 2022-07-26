@@ -46,7 +46,7 @@ const JwtPassPort = passport.use(
             if (user) {
                 const lat = Number(user.iat);
                 const exp = Number(user.exp);
-                const time = getDateTime(10);
+                const time = getDateTime(10); // set time size in paramter
 
                 if (time >= lat && time <= exp) {
                     return done(null, user);

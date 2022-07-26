@@ -13,6 +13,7 @@ export const method_post = {
         essentialBody: ["user_id", "user_pw"],
         essentialHeader: [],
         minmax: undefined,
+        essentialQuery: [],
     } as ValidatorParameter,
 
     path: path.basename(__filename),

@@ -11,13 +11,15 @@ interface MinMaxChecker {
 export interface ValidatorParameter {
     essentialHeader: string[] | undefined;
     essentialBody: string[] | undefined;
+    essentialQuery: string[] | undefined;
     minmax: MinMaxChecker[] | undefined;
 }
 
-export const expressValidator = ({ essentialBody, essentialHeader, minmax }: ValidatorParameter) => {
+export const expressValidator = ({ essentialBody, essentialHeader, essentialQuery, minmax }: ValidatorParameter) => {
     return function (req: express.Request, res: express.Response, callback: PrecessCallback) {
         const reqBody = req.body;
         const reqHeader = req.headers;
+        const reqQuery = req.query;
 
         // 필수 파라미터 존재 여부 확인
         if (typeof essentialBody !== "undefined" && essentialBody.length > 0) {
@@ -31,10 +33,22 @@ export const expressValidator = ({ essentialBody, essentialHeader, minmax }: Val
             }
         }
 
-        // 필수 파라미터 존재 여부 확인
+        // 필수 헤더 존재 여부 확인
         if (typeof essentialHeader !== "undefined" && essentialHeader.length > 0) {
             let result = essentialHeader.every((val) => {
                 const reqParam = reqHeader[val.toLowerCase()];
+                return typeof reqParam !== "undefined";
+            });
+
+            if (result === false) {
+                return callback({ data: undefined, code: NOT_EXIST_PARAMETER }, null);
+            }
+        }
+
+        // 필수 쿼리 존재 여부 확인
+        if (typeof essentialQuery !== "undefined" && essentialQuery.length > 0) {
+            let result = essentialQuery.every((val) => {
+                const reqParam = reqQuery[val.toLowerCase()];
                 return typeof reqParam !== "undefined";
             });
 

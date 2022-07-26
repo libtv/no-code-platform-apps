@@ -9,6 +9,7 @@ export const NOT_ALLOW_LENGTH = "302";
 export const NOT_EXIST_MEMBER = "303";
 export const STATUS_LOGOUT = "304";
 export const NOT_AUTH_USER = "305";
+export const NOT_MATCH_USERID = "306";
 
 /** 400 : 데이터베이스 에러 코드 */
 export const DB_INSERT_ERROR = "401";
@@ -25,6 +26,7 @@ ERRORCODE.set(NOT_ALLOW_LENGTH, { resultCode: NOT_ALLOW_LENGTH, resultMessage: "
 ERRORCODE.set(NOT_EXIST_MEMBER, { resultCode: NOT_EXIST_MEMBER, resultMessage: "회원정보가 일치하지 않습니다." });
 ERRORCODE.set(STATUS_LOGOUT, { resultCode: STATUS_LOGOUT, resultMessage: "현재 로그아웃 상태입니다." });
 ERRORCODE.set(NOT_AUTH_USER, { resultCode: NOT_AUTH_USER, resultMessage: "권한이 존재하지 않습니다." });
+ERRORCODE.set(NOT_MATCH_USERID, { resultCode: NOT_MATCH_USERID, resultMessage: "유저아이디가 일치하지 않습니다." });
 
 ERRORCODE.set(DB_INSERT_ERROR, { resultCode: DB_INSERT_ERROR, resultMessage: "데이터베이스에 INSERT 도중 에러가 발생하였습니다." });
 ERRORCODE.set(DB_SELECT_ERROR, { resultCode: DB_SELECT_ERROR, resultMessage: "데이터베이스에 SELECT 도중 에러가 발생하였습니다." });

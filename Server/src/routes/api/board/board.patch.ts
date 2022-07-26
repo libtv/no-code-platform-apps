@@ -14,6 +14,7 @@ export const method_patch = {
         essentialBody: ["board_no", "board_title", "board_content"],
         essentialHeader: ["Authorization"],
         minmax: undefined,
+        essentialQuery: [],
     } as ValidatorParameter,
 
     path: path.basename(__filename),
