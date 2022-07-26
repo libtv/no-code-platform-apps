@@ -1,5 +1,13 @@
 # <div align="center"> SERVER </div>
 
+<div align="center">
+
+Anonymous Server
+
+account, login, board, comment CRUD 기능을 간단하게 적용하여 구현한 게시판입니다. 서버에서는 JSON 형태로 클라이언트에게 전송합니다. 현재 지원 가능한 HTTP 메소드는 DELETE, POST, GET, PATCH 가 있으며, 메소드를 통해 테스트 해보실 수 있습니다.
+
+</div>
+
 <br>
 
 ## Step
