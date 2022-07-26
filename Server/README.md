@@ -34,3 +34,22 @@ CREATE TABLE BOARD ( board_no INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, board
 ```
 
 <br>
+
+4. node 설치 후 패키지를 설치합니다.
+
+<br>
+
+```sh
+npm install --save
+npm install -g nodemon ts-node
+```
+
+<br>
+
+5. 서버를 실행합니다.
+
+<br>
+
+```sh
+npm start
+```
