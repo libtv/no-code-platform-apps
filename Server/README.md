@@ -16,8 +16,6 @@ account, login, board, comment CRUD 기능을 간단하게 적용하여 구현�
 2. .env 파일에 디비를 설정합니다.
 3. 아래 쿼리문을 실행하여 데이터베이스 및 테이블을 생성해주세요.
 
-<br>
-
 ```sql
 -- 데이터베이스 생성
 create database Anonymous
@@ -37,8 +35,6 @@ CREATE TABLE BOARD ( board_no INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, board
 
 4. node 설치 후 패키지를 설치합니다.
 
-<br>
-
 ```sh
 npm install --save
 npm install -g nodemon ts-node
@@ -47,8 +43,6 @@ npm install -g nodemon ts-node
 <br>
 
 5. 서버를 실행합니다.
-
-<br>
 
 ```sh
 npm start
