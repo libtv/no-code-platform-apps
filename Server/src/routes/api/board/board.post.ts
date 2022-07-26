@@ -39,8 +39,8 @@ export const method_post = {
             const reqBody = req.body;
 
             const data: BoardVO = {
-                board_title: reqBody.title,
-                board_content: reqBody.content,
+                board_title: reqBody.board_title,
+                board_content: reqBody.board_content,
                 board_regdate: new Date(),
                 user_id: user.user_id,
             };
