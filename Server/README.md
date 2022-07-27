@@ -10,6 +10,12 @@ account, login, board, comment CRUD 기능을 간단하게 적용하여 구현�
 
 <br>
 
+## ERD
+
+<img src="./public/img/diagram.png">
+
+<br>
+
 ## Step
 
 1. Maria-DB를 설치합니다.
