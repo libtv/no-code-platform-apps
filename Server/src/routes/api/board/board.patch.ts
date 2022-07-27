@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import { Board } from "../../../models/model.board";
-import { DB_DELETE_ERROR, DB_INSERT_ERROR, NOT_AUTH_USER, STATUS_LOGOUT, SUCCESS } from "../../../utils/errorcode";
+import { DB_UPDATE_ERROR, NOT_AUTH_USER, STATUS_LOGOUT, SUCCESS } from "../../../utils/errorcode";
 import { logger } from "../../../utils/logger";
 import { JwtPassPort } from "../../../utils/passport";
 import { PrecessCallback } from "../../../utils/process";
@@ -54,7 +54,7 @@ export const method_patch = {
                 }
             } catch (err) {
                 logger.error(`[${method_patch.path}] - board insert error : + ${err}`);
-                callback({ data: undefined, code: DB_DELETE_ERROR }, null);
+                callback({ data: undefined, code: DB_UPDATE_ERROR }, null);
             }
         };
     },

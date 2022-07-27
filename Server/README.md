@@ -31,6 +31,11 @@ CREATE TABLE USERS ( user_id VARCHAR(100) NOT NULL, user_pw VARCHAR(200) NOT NUL
 CREATE TABLE BOARD ( board_no INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, board_title VARCHAR(200) NOT NULL, board_content TEXT(65535) NOT NULL, board_regdate DATE, user_id  VARCHAR(100) NOT NULL, FOREIGN KEY(user_id) REFERENCES USERS(user_id) );
 ```
 
+```sql
+-- 댓글 테이블 생성
+create table COMMENT ( comment_no INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, comment_parent INT(10) DEFAULT NULL, comment_content TEXT(65535) NOT NULL, comment_regdate DATE NOT NULL, comment_status CHAR(1) DEFAULT 'Y', board_no INT(10) NOT NULL, user_id VARCHAR(100) NOT NULL, FOREIGN KEY(board_no) REFERENCES BOARD(board_no) on delete cascade , FOREIGN KEY(user_id) REFERENCES USERS(user_id) on delete cascade);
+```
+
 <br>
 
 4. node 설치 후 패키지를 설치합니다.
