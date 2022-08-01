@@ -31,11 +31,11 @@ export default function MyTable({list} : any) {
             <tbody>
                 {lists && lists.map((val) => (
                     <tr>
-                        <td>{val[5]}</td>
-                        <td>{val[0]}</td>
-                        <td>{val[1]}</td>
-                        <td>{val[2]}</td>
-                        <td>{val[4].slice(0, 10)}</td>
+                        <td>{val.board_no}</td>
+                        <td>{val.board_title}</td>
+                        <td>{val.board_content}</td>
+                        <td>{val.user_id}</td>
+                        <td>{val.board_regdate.toString()}</td>
                         <td>0</td>
                         <td>0</td>
                     </tr>

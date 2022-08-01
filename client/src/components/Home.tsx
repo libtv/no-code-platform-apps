@@ -24,9 +24,10 @@ function HomeList(this: any) {
             setError(null);
             setLoading(true);
             const response = await axios.get(
-              'http://localhost:8081/list'
+              'http://localhost:3939/api/board'
             );
-            setLists(response.data.list.rows);
+            console.log(response.data.data)
+            setLists(response.data.data);
           } catch (e : any) {
             setError(e);
           }
