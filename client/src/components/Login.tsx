@@ -1,9 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { grantAccessToken } from "../store/store";
 
 export default function Login() {
     let navigate = useNavigate();
+    let state = useSelector((state: any) => state.loginInfo )
+    let dispatch = useDispatch()
 
     const [inputs, setInputs] = useState({
         userId: '',
@@ -29,8 +33,9 @@ export default function Login() {
         )
 
         if(response.data.result.resultCode === '200') {
-            // navigate('/')
-            console.log(response.data)
+            navigate('/')
+            const accessToken = response.data.data.accessToken;
+            dispatch(grantAccessToken(accessToken))
         }
 
         setInputs({

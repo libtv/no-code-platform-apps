@@ -7,6 +7,7 @@ import { LocalPassPort } from "../../../utils/passport";
 import { PrecessCallback } from "../../../utils/process";
 import { ValidatorParameter } from "../../../utils/validator";
 import { SUCCESS } from "./../../../utils/errorcode";
+import { getLocalValue, setLocalValue } from "../../../utils/responser";
 
 export const method_post = {
     params: {
@@ -40,6 +41,7 @@ export const method_post = {
                 });
 
                 res.cookie("accessToken", accessToken);
+                setLocalValue("accessToken", accessToken, res);
                 callback();
             }).call(null, req, res);
         };
@@ -47,7 +49,8 @@ export const method_post = {
 
     supplyment: () => {
         return (req: express.Request, res: express.Response, callback: PrecessCallback) => {
-            callback(null, { data: undefined, code: SUCCESS });
+            const accessToken = getLocalValue("accessToken", res)
+            callback(null, { data: { accessToken: accessToken}, code: SUCCESS });
         };
     },
 };
