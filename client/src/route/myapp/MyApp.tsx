@@ -14,11 +14,9 @@ function HomeList(this: any) {
   useEffect(() => {}, []);
 
   return (
-    <div className="home-title">
-      <div>게시판</div>
-      <Link to="/write">
-        <TiPencil />
-      </Link>
+    <div className="myapp-body">
+      <div>앱생성</div>
+      <Link to="/write"></Link>
     </div>
   );
 }

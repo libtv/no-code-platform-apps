@@ -1,18 +1,23 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./asset/css/styled.css";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
 import MyApp from "./route/myapp/MyApp";
+import MyAppHeader from "./route/myapp/MyAppHeader";
 
 function App() {
   return (
     <div className="App">
-      <Header />
       <Routes>
-        <Route path="/" element={<MyApp />}></Route>
+        <Route
+          path="/"
+          element={
+            <div className="common-wrap">
+              <MyAppHeader />
+              <MyApp />
+            </div>
+          }
+        ></Route>
       </Routes>
-      <Footer />
     </div>
   );
 }

@@ -5,3 +5,10 @@
 @import url('./home.css');
 @import url('./write.css');
 @import url('../../App.css'); */
+
+@import url("./reset.css");
+@import url("./myapp/header.css");
+@import url("./myapp/body.css");
+@import url("./common.css");
+
+@import url("./font/anywhere.font.css");
