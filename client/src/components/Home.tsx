@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import MyTable from "./Table";
 import axios from "axios";
-import { PostListVo } from "../vo/postListVo";
 import { TiPencil } from 'react-icons/ti'
 
 function Home({ list } : any) {
@@ -14,7 +13,7 @@ function Home({ list } : any) {
 }
 
 function HomeList(this: any) {
-    const [lists, setLists] = useState<PostListVo[]>([]);
+    const [lists, setLists] = useState<any[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 

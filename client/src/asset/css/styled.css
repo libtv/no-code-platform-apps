@@ -1,15 +1,7 @@
-@import url('./header.css');
+/* @import url('./header.css');
 @import url('./footer.css');
 @import url('./auth.css');
 @import url('./table.css');
 @import url('./home.css');
 @import url('./write.css');
-@import url('../../App.css');
-
-:root {
-    --main-color: #f39c11;
-}
-
-button:hover {
-    cursor: pointer;
-}
+@import url('../../App.css'); */

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { PostListVo } from "../vo/postListVo";
-
 export default function MyTable({list} : any) {
-    const lists : PostListVo[] = list
+    const lists : any[] = list
     console.log(lists)
 
     return (
