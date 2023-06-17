@@ -5,13 +5,11 @@ import ComplexImageButton from "../../components/ImageButton.mui";
 import ComplexImageList from "../../components/ImageList.mui";
 import ComplexModal from "../../components/Modal.mui";
 import { APP_IMG_LIST } from "../../const/common";
-import { MyAppContext } from "./MyAppProvider";
+import { MyAppContext } from "./myapp.provider";
 
 function MyApp({ children }: any) {
-  const { handleOpen, handleClose, states, onClick, onChange, uuid } = useContext(MyAppContext);
-  const { open, refresh, appName } = states;
-
-  useEffect(() => {}, []);
+  const { handleOpen, handleClose, states, onClick, onChange, uuid, createAppList } = useContext(MyAppContext);
+  const { open, refresh, appName, appList } = states;
 
   return (
     <div className="myapp-body">
@@ -36,13 +34,20 @@ function MyApp({ children }: any) {
       </ComplexModal>
 
       <Grid2 container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 6, md: 8, lg: 10, xl: 12 }}>
-        {Array.from(Array(1)).map((_, index) => (
-          <Grid2 xs={2} sm={2} md={2} key={index}>
-            <ComplexImageButton url={APP_IMG_LIST.items[0].src} width="200px" onClick={handleOpen}>
-              앱생성
-            </ComplexImageButton>
-          </Grid2>
-        ))}
+        <Grid2 xs={2} sm={2} md={2} key={1}>
+          <ComplexImageButton url={APP_IMG_LIST.items[0].src} width="200px" onClick={handleOpen}>
+            앱생성
+          </ComplexImageButton>
+        </Grid2>
+        {appList.map((v: any, idx: any) => {
+          return (
+            <Grid2 xs={2} sm={2} md={2} key={idx}>
+              <ComplexImageButton url={v.APP_IMG.toString("utf-8")} width="200px" onClick={handleOpen}>
+                {v.APP_NAME}
+              </ComplexImageButton>
+            </Grid2>
+          );
+        })}
       </Grid2>
     </div>
   );
