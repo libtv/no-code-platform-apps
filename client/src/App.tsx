@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./asset/css/styled.css";
 import MyApp from "./route/myapp/MyApp";
+import { MyAppProvider } from "./route/myapp/MyAppProvider";
 import MyAppHeader from "./route/myapp/MyAppHeader";
 
 function App() {
@@ -12,8 +13,10 @@ function App() {
           path="/"
           element={
             <div className="common-wrap">
-              <MyAppHeader />
-              <MyApp />
+              <MyAppProvider>
+                <MyAppHeader />
+                <MyApp />
+              </MyAppProvider>
             </div>
           }
         ></Route>

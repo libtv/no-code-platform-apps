@@ -1,3 +1,10 @@
 .myapp-body {
   position: relative;
+  margin-top: 22px;
+  font-family: "Montserrat", sans-serif;
+  font-family: "Noto Sans KR", "Montserrat", sans-serif;
+}
+
+#myapp-image-label {
+  font-size: 12px;
 }
