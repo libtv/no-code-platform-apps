@@ -2,8 +2,11 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./asset/css/styled.css";
 import MyApp from "./route/home/home";
-import { MyAppProvider } from "./route/home/home.provider";
-import MyAppHeader from "./route/home/home.header";
+import { HomeProvider } from "./route/home/home.provider";
+import HomeHeader from "./route/home/home.header";
+import MyAppHeader from "./route/myapp/myapp.header";
+import MyAppMenu from "./route/myapp/myapp.menu";
+import { MyAppProvider } from "./route/myapp/myapp.provider";
 
 function App() {
   return (
@@ -13,22 +16,20 @@ function App() {
           path="/"
           element={
             <div className="common-wrap">
-              <MyAppProvider>
-                <MyAppHeader />
+              <HomeProvider>
+                <HomeHeader />
                 <MyApp />
-              </MyAppProvider>
+              </HomeProvider>
             </div>
           }
         ></Route>
         <Route
-          path="/apps"
+          path="/apps/:apps"
           element={
-            <div className="common-wrap">
-              <MyAppProvider>
-                <MyAppHeader />
-                <MyApp />
-              </MyAppProvider>
-            </div>
+            <MyAppProvider>
+              <MyAppHeader></MyAppHeader>
+              <MyAppMenu></MyAppMenu>
+            </MyAppProvider>
           }
         ></Route>
       </Routes>

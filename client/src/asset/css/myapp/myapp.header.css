@@ -1,0 +1,66 @@
+.myapp-header {
+  width: 100%;
+  height: 70px;
+  background-color: #3aafda;
+  position: relative;
+}
+
+.myapp-header-content {
+  width: calc(100% - 240px);
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 240px;
+  position: relative;
+  box-sizing: content-box;
+  align-items: center;
+}
+
+.myapp-header-content-ul {
+  width: 150px;
+  height: 100%;
+  padding: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+
+  position: relative;
+}
+
+.myapp-header-content-ul-icon {
+  color: white;
+  cursor: pointer;
+  transition: all;
+}
+
+.myapp-header-content-ul-icon:hover {
+  color: black;
+}
+
+.myapp-header-content-ul-modal {
+  width: 450px;
+  height: 300px;
+  background-color: white;
+
+  position: absolute;
+  top: 75px;
+  left: -300px;
+
+  box-shadow: -2px 2px 2px 2px whitesmoke;
+
+  transition: all 0.5s;
+  animation: fadeIn 2s;
+
+  margin-bottom: 20px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

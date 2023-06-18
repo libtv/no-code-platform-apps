@@ -5,24 +5,26 @@ import ComplexImageButton from "../../components/ImageButton.mui";
 import ComplexImageList from "../../components/ImageList.mui";
 import ComplexModal from "../../components/Modal.mui";
 import { APP_IMG_LIST } from "../../const/common";
-import { MyAppContext } from "./home.provider";
+import { HomeContext } from "./home.provider";
 
-function MyApp({ children }: any) {
-  const { handleOpen, handleClose, states, onClick, onChange, uuid, createAppList } = useContext(MyAppContext);
+function Home({ children }: any) {
+  const { handleOpen, handleClose, states, onClick, onChange, uuid, createAppList, onClick2 } = useContext(HomeContext);
   const { open, refresh, appName, appList } = states;
 
+  console.log(appList);
+
   return (
-    <div className="myapp-body">
+    <div className="home-body">
       <ComplexModal open={open} handleClose={handleClose}>
-        <div className="myapp-header-re">
-          <div className="myapp-header">
-            <div className="myapp-header-content">앱 생성하기</div>
+        <div className="home-header-re">
+          <div className="home-header">
+            <div className="home-header-content">앱 생성하기</div>
           </div>
         </div>
-        <div className="myapp-body">
-          <TextField label="앱 이름을 입력하세요." id="myapp-name" variant="standard" sx={{ width: "100%", margin: "0 0 20px 0" }} onChange={onChange} />
-          <TextField label="앱 주소를 입력하세요." id="myapp-page" variant="standard" sx={{ width: "100%", margin: "0 0 20px 0" }} value={uuid} />
-          <InputLabel id="myapp-image-label">이미지를 선택하세요. </InputLabel>
+        <div className="home-body">
+          <TextField label="앱 이름을 입력하세요." id="home-name" variant="standard" sx={{ width: "100%", margin: "0 0 20px 0" }} onChange={onChange} />
+          <TextField label="앱 주소를 입력하세요." id="home-page" variant="standard" sx={{ width: "100%", margin: "0 0 20px 0" }} value={uuid} />
+          <InputLabel id="home-image-label">이미지를 선택하세요. </InputLabel>
           <Grid2 container spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }}>
             <img src={APP_IMG_LIST.items[1].src} width={"300"}></img>
             <ComplexImageList list={APP_IMG_LIST}></ComplexImageList>
@@ -42,7 +44,7 @@ function MyApp({ children }: any) {
         {appList.map((v: any, idx: any) => {
           return (
             <Grid2 xs={2} sm={2} md={2} key={idx}>
-              <ComplexImageButton url={v.APP_IMG.toString("utf-8")} width="200px" onClick={handleOpen}>
+              <ComplexImageButton url={v.APP_IMG.toString("utf-8")} width="200px" onClick={() => onClick2(v.APP_UUID)}>
                 {v.APP_NAME}
               </ComplexImageButton>
             </Grid2>
@@ -53,4 +55,4 @@ function MyApp({ children }: any) {
   );
 }
 
-export default React.memo(MyApp);
+export default React.memo(Home);

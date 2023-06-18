@@ -1,9 +1,12 @@
 import React, { createContext, useCallback, useState, useMemo, useEffect } from "react";
-import { myapp_api } from "./home.service";
+import { home_api } from "./home.service";
 import { APP_IMG_LIST } from "../../const/common";
+import { useNavigate } from "react-router-dom";
 
-export const MyAppContext = createContext(null as any);
-export const MyAppProvider = ({ children }: any) => {
+export const HomeContext = createContext(null as any);
+export const HomeProvider = ({ children }: any) => {
+  const navigate = useNavigate();
+
   const [states, setStates] = useState({
     open: false,
     refresh: false,
@@ -36,14 +39,18 @@ export const MyAppProvider = ({ children }: any) => {
   }, [open, refresh, appName, appList]);
 
   const onClick = useCallback(() => {
-    if (myapp_api.post)
-      myapp_api.post(
+    if (home_api.post)
+      home_api.post(
         () => {
           setRefresh();
         },
         { APP_UUID: uuid, APP_NAME: appName, APP_IMG: APP_IMG_LIST.items[1].src }
       );
   }, [appName, refresh, open, appList]);
+
+  const onClick2 = useCallback((url: string) => {
+    navigate(`apps/${url}`);
+  }, []);
 
   const onChange = useCallback(
     (e: any) => {
@@ -62,8 +69,8 @@ export const MyAppProvider = ({ children }: any) => {
   }, [refresh]);
 
   const createAppList = useCallback(() => {
-    if (myapp_api.get)
-      myapp_api.get((data: any) => {
+    if (home_api.get)
+      home_api.get((data: any) => {
         setStates({
           ...states,
           appList: data,
@@ -75,5 +82,5 @@ export const MyAppProvider = ({ children }: any) => {
     createAppList();
   }, [refresh]);
 
-  return <MyAppContext.Provider value={{ states, handleOpen, handleClose, onClick, onChange, uuid, createAppList }}>{children}</MyAppContext.Provider>;
+  return <HomeContext.Provider value={{ states, handleOpen, handleClose, onClick, onChange, uuid, createAppList, onClick2 }}>{children}</HomeContext.Provider>;
 };

@@ -5,7 +5,7 @@ import { SERVER_URL } from "../../const/common";
 
 const api_uri = `${SERVER_URL}/application`;
 
-export const myapp_api: ApiMethodVO = {
+export const home_api: ApiMethodVO = {
   post: (callback: any, axios_data) => {
     asnycProcess.gc();
     asnycProcess.add((data: any, cb: any) => {
