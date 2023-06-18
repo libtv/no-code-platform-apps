@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./asset/css/styled.css";
-import MyApp from "./route/myapp/myapp";
-import { MyAppProvider } from "./route/myapp/myapp.provider";
-import MyAppHeader from "./route/myapp/myapp.header";
+import MyApp from "./route/home/home";
+import { MyAppProvider } from "./route/home/home.provider";
+import MyAppHeader from "./route/home/home.header";
 
 function App() {
   return (
@@ -11,6 +11,17 @@ function App() {
       <Routes>
         <Route
           path="/"
+          element={
+            <div className="common-wrap">
+              <MyAppProvider>
+                <MyAppHeader />
+                <MyApp />
+              </MyAppProvider>
+            </div>
+          }
+        ></Route>
+        <Route
+          path="/apps"
           element={
             <div className="common-wrap">
               <MyAppProvider>

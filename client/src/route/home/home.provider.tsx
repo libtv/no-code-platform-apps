@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useState, useMemo, useEffect } from "react";
-import { myapp_api } from "./myapp.service";
+import { myapp_api } from "./home.service";
 import { APP_IMG_LIST } from "../../const/common";
 
 export const MyAppContext = createContext(null as any);
@@ -62,7 +62,6 @@ export const MyAppProvider = ({ children }: any) => {
   }, [refresh]);
 
   const createAppList = useCallback(() => {
-    console.log("dd");
     if (myapp_api.get)
       myapp_api.get((data: any) => {
         setStates({
@@ -74,7 +73,7 @@ export const MyAppProvider = ({ children }: any) => {
 
   useEffect(() => {
     createAppList();
-  }, []);
+  }, [refresh]);
 
   return <MyAppContext.Provider value={{ states, handleOpen, handleClose, onClick, onChange, uuid, createAppList }}>{children}</MyAppContext.Provider>;
 };
