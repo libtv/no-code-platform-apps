@@ -35,6 +35,7 @@ export const method_get = {
         })
         .catch((e) => {
           callback(e);
+          console.log(e);
         });
     };
   },
