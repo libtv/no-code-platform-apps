@@ -1,6 +1,6 @@
 export interface ApiMethodVO {
-  get?: (callback?: any, data?: any) => any;
-  post?: (callback?: any, data?: any) => any;
-  del?: (callback?: any, data?: any) => any;
-  patch?: (callback?: any, data?: any) => any;
+  get: (callback?: any, axios_data?: any) => any;
+  post: (callback?: any, axios_data?: any) => any;
+  del: (callback?: any, axios_data?: any) => any;
+  patch: (callback?: any, axios_data?: any) => any;
 }

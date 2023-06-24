@@ -30,7 +30,7 @@ function Modal_MUI(props: any) {
       }}
     >
       <Fade in={props.open}>
-        <Box sx={style}>
+        <Box sx={{ ...style, height: props.height || "auto" }}>
           {/* <Typography id="transition-modal-title" variant="h6" component="h2">
             Text in a modal
           </Typography>

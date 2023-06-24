@@ -1,3 +1,6 @@
+import React, { createContext } from "react";
+import { useLocation } from "react-router-dom";
+
 export const APP_IMG_LIST = {
   width: "800px",
   height: "500px",
@@ -16,3 +19,9 @@ export const APP_IMG_LIST = {
 };
 
 export const SERVER_URL = process.env.SERVER_URL || "http://localhost:3939/api";
+
+export const DefaultContext = createContext(null as any);
+export const DefaultProvider = ({ children }: any) => {
+  const location = useLocation();
+  return <DefaultContext.Provider value={{ location }}>{children}</DefaultContext.Provider>;
+};

@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useState, useMemo, useEffect } from "react";
-import { home_api } from "./home.service";
 import { APP_IMG_LIST } from "../../const/common";
 import { useNavigate } from "react-router-dom";
+import { api } from "../../api/home/home.assembly";
 
 export const HomeContext = createContext(null as any);
 export const HomeProvider = ({ children }: any) => {
@@ -39,13 +39,12 @@ export const HomeProvider = ({ children }: any) => {
   }, [open, refresh, appName, appList]);
 
   const onClick = useCallback(() => {
-    if (home_api.post)
-      home_api.post(
-        () => {
-          setRefresh();
-        },
-        { APP_UUID: uuid, APP_NAME: appName, APP_IMG: APP_IMG_LIST.items[1].src }
-      );
+    api.post(
+      () => {
+        setRefresh();
+      },
+      { APP_UUID: uuid, APP_NAME: appName, APP_IMG: APP_IMG_LIST.items[1].src }
+    );
   }, [appName, refresh, open, appList]);
 
   const onClick2 = useCallback((url: string) => {
@@ -69,13 +68,12 @@ export const HomeProvider = ({ children }: any) => {
   }, [refresh]);
 
   const createAppList = useCallback(() => {
-    if (home_api.get)
-      home_api.get((data: any) => {
-        setStates({
-          ...states,
-          appList: data,
-        });
+    api.get((data: any) => {
+      setStates({
+        ...states,
+        appList: data,
       });
+    });
   }, [appList]);
 
   useEffect(() => {

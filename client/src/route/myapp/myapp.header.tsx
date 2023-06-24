@@ -3,10 +3,11 @@ import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
 import { MyAppContext } from "./myapp.provider";
+import { DefaultContext } from "../../const/common";
 
 function MyAppHeader() {
-  const { states, myAppModalOpen, myAppModalClose } = useContext(MyAppContext);
-  const { myapp_header_modal } = states;
+  const { states, myAppModalOpen, myAppModalClose, handleOpen } = useContext(MyAppContext);
+  const { myapp_header_modal, appList } = states;
 
   return (
     <div className="myapp-header ">
@@ -21,7 +22,9 @@ function MyAppHeader() {
                   <CloseIcon className="modal-close-group-btn" onClick={myAppModalClose}></CloseIcon>
                 </div>
                 <div className="modal-button-group">
-                  <div className="modal-button-group-btn">새로만들기</div>
+                  <div className="modal-button-group-btn" onClick={handleOpen}>
+                    새로만들기
+                  </div>
                   <div className="modal-button-group-btn">REST API</div>
                   <div className="modal-button-group-btn">액셀파일</div>
                 </div>

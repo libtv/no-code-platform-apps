@@ -49,7 +49,7 @@ class AsyncProcess {
 
   gc() {
     this.funcs = [];
-    this.data = null;
+    this.data = {};
   }
 }
 
