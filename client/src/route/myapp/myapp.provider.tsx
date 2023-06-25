@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState, useCallback, useRef, useContext } from "react";
+import React, { createContext, useEffect, useState, useCallback, useRef, useContext, useMemo } from "react";
 import { DefaultContext } from "../../const/common";
 import { api } from "../../api/home/home.assembly";
 
@@ -12,6 +12,9 @@ export const MyAppProvider = ({ children }: any) => {
     appList: [],
     refresh: false,
     open: false,
+    myapp_modal_table_name: crypto.randomUUID(),
+    myapp_modal_filed_name: "TEST",
+    myapp_modal_key_name: "TEST",
   });
 
   const { myapp_header_modal, appList, refresh } = states;
@@ -59,8 +62,6 @@ export const MyAppProvider = ({ children }: any) => {
     });
   }, [states]);
 
-  console.log("call");
-
   const f0Click = useCallback((e: any) => {
     e.preventDefault();
     let target = document.querySelectorAll(".myapp-modal-body > p");
@@ -78,5 +79,16 @@ export const MyAppProvider = ({ children }: any) => {
     }
   }, []);
 
-  return <MyAppContext.Provider value={{ myAppModalOpen, states, myAppModalClose, handleOpen, handleClose, f0Click }}>{children}</MyAppContext.Provider>;
+  const onChange = useCallback(
+    (e: any) => {
+      let { value, id } = e.target;
+      setStates({
+        ...states,
+        [id]: value,
+      });
+    },
+    [states]
+  );
+
+  return <MyAppContext.Provider value={{ myAppModalOpen, states, myAppModalClose, handleOpen, handleClose, f0Click, onChange }}>{children}</MyAppContext.Provider>;
 };
