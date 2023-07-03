@@ -6,8 +6,8 @@ import React, { useContext, useEffect, useMemo } from "react";
 import { MyAppContext } from "./myapp.provider";
 
 function Modal({ children }: any) {
-  const { states, myAppModalOpen, myAppModalClose, handleClose, f0Click, onChange } = useContext(MyAppContext);
-  const { myapp_header_modal, appList, open, myapp_modal_table_name, myapp_modal_key_name, myapp_modal_filed_name } = states;
+  const { states, myAppModalOpen, myAppModalClose, handleClose, f0Click, onChange, postClick } = useContext(MyAppContext);
+  const { myapp_header_modal, appList, open, myapp_modal_table_name, myapp_modal_key_name, myapp_modal_filed_name, myapp_modal_form_name } = states;
 
   return (
     <ComplexModal open={open} handleClose={handleClose} height={"1000px"}>
@@ -17,7 +17,7 @@ function Modal({ children }: any) {
         </div>
       </div>
       <div className="myapp-modal-body">
-        <TextField label="생성할 폼 제목을 입력하세요." id="myapp-modal-form-name" variant="standard" sx={{ width: "100%", margin: "0 0 20px 0" }} />
+        <TextField label="생성할 폼 제목을 입력하세요." id="myapp_modal_form_name" variant="standard" sx={{ width: "100%", margin: "0 0 20px 0" }} value={myapp_modal_form_name} onChange={onChange} />
         <p className="off" onClick={f0Click}>
           옵션
         </p>
@@ -26,7 +26,7 @@ function Modal({ children }: any) {
           <TextField label="키 필드명" id="myapp_modal_key_name" variant="standard" sx={{ width: "100%", margin: "0 0 20px 0" }} value={myapp_modal_key_name} onChange={onChange} />
           <TextField label="표시필드명" id="myapp_modal_filed_name" variant="standard" sx={{ width: "100%", margin: "0 0 20px 0" }} value={myapp_modal_filed_name} onChange={onChange} />
         </div>
-        <Button variant="contained" color="success" sx={{ width: "100%", position: "absolute", bottom: 0 }}>
+        <Button variant="contained" color="success" sx={{ width: "100%", position: "absolute", bottom: 0 }} onClick={postClick}>
           제출하기
         </Button>
       </div>

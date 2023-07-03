@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState, useCallback, useRef, useContext, useMemo } from "react";
 import { DefaultContext } from "../../const/common";
+import { myapp_api } from "../../api/myapp/myapp.assembly";
 import { api } from "../../api/home/home.assembly";
 
 export const MyAppContext = createContext(null as any);
@@ -15,9 +16,10 @@ export const MyAppProvider = ({ children }: any) => {
     myapp_modal_table_name: crypto.randomUUID(),
     myapp_modal_filed_name: "TEST",
     myapp_modal_key_name: "TEST",
+    myapp_modal_form_name: "",
   });
 
-  const { myapp_header_modal, appList, refresh } = states;
+  const { myapp_header_modal, appList, refresh, myapp_modal_table_name, myapp_modal_filed_name, myapp_modal_key_name, myapp_modal_form_name } = states;
 
   const myAppModalOpen = useCallback(() => {
     setStates({
@@ -38,6 +40,7 @@ export const MyAppProvider = ({ children }: any) => {
   }, [refresh]);
 
   const createAppList = useCallback(() => {
+    console.log("gddgd");
     api.get((data: any) => {
       setStates({
         ...states,
@@ -90,5 +93,21 @@ export const MyAppProvider = ({ children }: any) => {
     [states]
   );
 
-  return <MyAppContext.Provider value={{ myAppModalOpen, states, myAppModalClose, handleOpen, handleClose, f0Click, onChange }}>{children}</MyAppContext.Provider>;
+  const setRefresh = useCallback(() => {
+    setStates({
+      ...states,
+      refresh: !refresh,
+    });
+  }, []);
+
+  const postClick = useCallback(() => {
+    myapp_api.post(
+      () => {
+        setRefresh();
+      },
+      { FORM_NAME: myapp_modal_form_name, TABLE_NAME: myapp_modal_table_name, FILED_NAME: myapp_modal_filed_name, KEY_NAME: myapp_modal_key_name }
+    );
+  }, [states]);
+
+  return <MyAppContext.Provider value={{ myAppModalOpen, states, myAppModalClose, handleOpen, handleClose, f0Click, onChange, postClick }}>{children}</MyAppContext.Provider>;
 };
